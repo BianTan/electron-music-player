@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>音乐播放器</title>
+  <script src="./index.js"></script>
+  <link rel="stylesheet" href="../../node_modules/bootstrap/dist/css/bootstrap.min.css">
+  <link href="https://netdna.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="./index.css">
+</head>
+<body>
+  <div class="container mt-4 mb-5 pb-5">
+    <h1>我的播放器</h1>
+    <button type="button" class="btn btn-primary btn-lg btn-block mt-4 open-window-click">添加歌曲到曲库</button>
+    <ul class="list-group row my-4" id="music-list"><b>暂时还没有添加音乐文件</b></ul>
+    <div class="position-fixed bg-white">
+      <hr/>
+      <div class="row mx-auto my-3">
+        <div class="col-2 play-button">
+          <div class="before"><i class="fa fa-backward fa-lg"></i></div>
+          <div class="play-status"><i class="fa fa-play-circle-o fa-3x"></i></div>
+          <div class="after"><i class="fa fa-forward fa-lg"></i></div>
+        </div>
+        <div class="col-8">
+          <span class="currentTime">00:00</span>
+          <div class="progress">
+            <div class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar" style="width: 100%"></div>
+          </div>
+          <span class="duration">00:00</span>
+        </div>
+        <div class="col-2 play-control">
+          <i class="fa fa-volume-up fa-lg"></i>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+</html>

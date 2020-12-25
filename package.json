@@ -1,0 +1,25 @@
+{
+  "name": "MusciPlayer",
+  "version": "1.0.0",
+  "description": "这是一个electron练手项目 音乐播放器",
+  "main": "main.js",
+  "scripts": {
+    "start": "nodemon --watch views --watch js --watch main.js --exec 'electron .'"
+  },
+  "repository": "https://github.com/BianTan/electron-music-player",
+  "keywords": [
+    "Electron",
+    "quick",
+    "start",
+    "tutorial",
+    "demo"
+  ],
+  "author": "BianDan",
+  "devDependencies": {
+    "electron": "^11.1.0",
+    "nodemon": "^2.0.6"
+  },
+  "dependencies": {
+    "bootstrap": "^4.5.3"
+  }
+}

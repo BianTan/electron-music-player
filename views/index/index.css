@@ -1,0 +1,37 @@
+.fa-play,
+.fa-trash,
+.fa-pause,
+.play-button > div {
+  cursor: pointer;
+}
+
+.position-fixed {
+  width: 100%;
+  left: 0;
+  bottom: 0;
+  box-sizing: border-box;
+}
+.position-fixed .col-8 {
+  display: flex;
+  align-items: center;
+  font-size: 0.8rem;
+}
+.position-fixed .progress {
+  flex: 1;
+  height: .35rem;
+  margin: 0 12px;
+}
+.position-fixed .col-8 span{
+  width: 42px;
+  text-align: center;
+}
+.play-button,
+.play-control {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #454545;
+}
+.play-button .play-status {
+  margin: 0 16px;
+}
