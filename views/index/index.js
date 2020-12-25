@@ -33,7 +33,7 @@ function listenList() {
           break
       }
     } else {
-      if (allTracks.length === 0) return
+      if (!allTracks || allTracks.length === 0) return
       setPlayData(allTracks[0].id)
       const classList = $(`.fa[data-id='${currentTrack.id}']`).classList
       play(classList)
@@ -46,9 +46,7 @@ function listenList() {
   })
   musicAduio.addEventListener('timeupdate', () => { // 音乐事件变化
     const currentTime = musicAduio.currentTime
-    $('.currentTime').innerText = filterTime(currentTime)
-    progress = Math.floor(currentTime / duration * 100)
-    $('.progress-bar').style.width = `${progress}%`
+    updateMusciInfo(currentTime, duration)
   })
 
   // 监听 main 发来的更新DOM事件
@@ -63,11 +61,18 @@ function listenList() {
         $(`.fa[data-id='${currentTrack.id}']`).classList.replace('fa-play', 'fa-pause')  // 设置按钮为暂停按钮
       }
     } else if (res && type == 'del' && data.length === 0) {
+      allTracks = null
       $('#music-list').innerHTML = '<b>暂时还没有添加音乐文件</b>'
     }
   })
 }
 
+// 更新音乐信息数据
+function updateMusciInfo(currentTime, duration) {
+  progress = Math.floor(currentTime / duration * 100)
+  $('.progress-bar').style.width = `${progress}%`
+  $('.currentTime').innerText = filterTime(currentTime)
+}
 // 创建音乐列表DOM
 function createMusicListDOM(data) {
   return data.reduce((html, item) => {
