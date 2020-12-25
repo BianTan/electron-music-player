@@ -5,6 +5,9 @@
 只允许打开一个父窗口和一个子窗口 嗝～～
 Ummmm... 啊，对了，还使用了 electron-store 和 uuid
 
+## 截图
+![window-screenshots](https://raw.githubusercontent.com/BianTan/electron-music-player/main/img/window-screenshots.png)
+
 ## 项目构建
 ```
 git clone git@github.com:BianTan/electron-music-player.git
