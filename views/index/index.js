@@ -5,6 +5,7 @@ let allTracks
 let currentTrack
 let duration
 let currentIndex
+let musicIdList
 
 window.addEventListener('DOMContentLoaded', () => { // 页面加载完成 
   listenList()  // 注册监听事件
@@ -39,6 +40,15 @@ function listenList() {
       play(classList)
     }
   })
+  // 上一首
+  $('.play-button .before').addEventListener('click', () => {
+    switchMusic('before')
+  })
+  // 下一首
+  $('.play-button .after').addEventListener('click', () => {
+    switchMusic('after')
+  })
+
   // 监听音乐播放
   musicAduio.addEventListener('loadedmetadata', () => { // 音乐数据加载
     $('.duration').innerText = filterTime(musicAduio.duration)
@@ -54,7 +64,9 @@ function listenList() {
     const { data, type } = res
     if (res && data.length !== 0) {
       allTracks = data
-      console.log('data', data)
+      musicIdList = allTracks.map(item => {
+        return item.id
+      })
       const listDOM = createMusicListDOM(data)
       $('#music-list').innerHTML = listDOM
       if (!musicAduio.paused) { // 如果有音乐正在播放
@@ -67,6 +79,29 @@ function listenList() {
   })
 }
 
+// 切换音乐
+function switchMusic(type) {
+  if (!currentTrack) return
+  let index
+  switch(type) {
+    case 'before':
+      index = currentIndex - 1
+      if (index < 0) {
+        index = musicIdList.length - 1
+      }
+      break
+    case 'after':
+      index = currentIndex + 1
+      if (index > musicIdList.length - 1) {
+        index = 0
+      }
+      break
+  }
+  $(`.fa[data-id='${musicIdList[currentIndex]}']`).classList.replace('fa-pause', 'fa-play') // 设置正在播放的音乐按钮为 播放按钮
+  const classList = $(`.fa[data-id='${musicIdList[index]}']`).classList // 获取将要播放音乐的 classlist
+  setPlayData(musicIdList[index])
+  play(classList)
+}
 // 更新音乐信息数据
 function updateMusciInfo(currentTime, duration) {
   progress = Math.floor(currentTime / duration * 100)
@@ -119,10 +154,11 @@ function setPlayData(id) {
     return item.id === id
   })
   musicAduio.src = currentTrack.path  // 设置播放地址
+  currentIndex = musicIdList.findIndex(res => { return res === id })
 }
 function play(classList) {
   musicAduio.play() // 播放
-  classList.replace('fa-play', 'fa-pause')  // 替换当前点击音乐的播放按钮为暂停按钮
+  classList.replace('fa-play', 'fa-pause')  // 替换播放按钮为暂停按钮
   $('.play-button .play-status .fa').classList.replace('fa-play-circle-o', 'fa-pause-circle-o')
 }
 function pause(classList) {

@@ -50,7 +50,7 @@ function init () {
     }
     mainWindow.send('updateTracksDOM', obj)
   })
-  // mainWindow.webContents.openDevTools()
+  mainWindow.webContents.openDevTools()
   //监听窗口关闭
   mainWindow.on('closed', () => {
     mainWindow = null
